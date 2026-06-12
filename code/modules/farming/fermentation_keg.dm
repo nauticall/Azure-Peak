@@ -6,7 +6,7 @@ GLOBAL_LIST_EMPTY(custom_fermentation_recipes)
 	volume = 25
 
 /obj/structure/fermentation_keg
-	name = "fermentation keg"
+	name = "drink keg"
 	desc = "A keg that bares the duty of birthing plenty of bubbling brews."
 
 	icon = 'icons/obj/brewing.dmi'
@@ -114,9 +114,13 @@ GLOBAL_LIST_EMPTY(custom_fermentation_recipes)
 	..()
 
 /obj/structure/fermentation_keg/attackby(obj/item/I, mob/user)
-	if(istype(I, /obj/item/reagent_containers) && tapped && (user.used_intent.type == /datum/intent/fill))
-		if(try_filling(user, I))
-			return
+	if(istype(I, /obj/item/reagent_containers) && (user.used_intent.type == /datum/intent/fill))
+		if(tapped)
+			try_filling(user, I)
+			return TRUE
+		if(ready_to_bottle)
+			to_chat(user, span_warning("[src] hasn't been tapped yet!"))
+			return TRUE
 
 	if(heated)
 		if(istype(I, /obj/item/rogueore/coal) || istype(I, /obj/item/grown/log/tree))
