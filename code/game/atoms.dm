@@ -435,7 +435,7 @@
 					else
 						. += "It contains [round(total_volume)] [UNIT_FORM_STRING(round(total_volume))] of <font color=[reagent_color]>something.</font>"
 			else
-				. += "Nothing."
+				. += "Nothing's inside."
 		else if(reagents.flags & AMOUNT_VISIBLE)
 			if(reagents.total_volume)
 				. += span_notice("It has [round(reagents.total_volume)] [UNIT_FORM_STRING(round(reagents.total_volume))] left.")
