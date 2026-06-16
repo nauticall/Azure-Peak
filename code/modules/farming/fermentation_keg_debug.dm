@@ -11,6 +11,7 @@
 	ready_to_bottle = TRUE
 	made_item = selected_recipe.name
 	sellprice = selected_recipe.sell_value + initial(sellprice)
+	reagents.add_reagent(selected_recipe.reagent_to_brew, selected_recipe.brewed_amount * selected_recipe.per_brew_amount)
 	icon_state = "barrel_tapless_ready"
 	update_overlays()
 
@@ -36,6 +37,7 @@
 	ready_to_bottle = TRUE
 	made_item = selected_recipe.name
 	sellprice = selected_recipe.sell_value + initial(sellprice)
+	reagents.add_reagent(selected_recipe.reagent_to_brew, selected_recipe.brewed_amount * selected_recipe.per_brew_amount)
 	update_overlays()
 
 /obj/structure/fermentation_keg/distiller/debug/brandy
